@@ -32,7 +32,15 @@ const App = () => {
     <div className="App">
       <h1 className="Header">React Wars</h1>
       {peopleData.map((person, index) => (
-        <Card name={person.name} key={index} />
+        <Card 
+          name={person.name}
+          birth={person.birth_year}
+          gender={person.gender}
+          hairColor={person.hair_color}
+          skinColor={person.skin_color}
+          eyeColor={person.eye_color}
+          key={index} 
+        />
       ))}
     </div>
   );
