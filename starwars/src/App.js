@@ -4,36 +4,42 @@ import styled from 'styled-components';
 import { Container } from 'reactstrap';
 import axios from 'axios';
 import CardComponent from './components/CardComponent';
+import ButtonPagination from './components/Button';
 
-// Component Styles
-const FlexContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`;
 
 // Component
 const App = () => {
 
   const [peopleData, setPeopleData] = useState([]);
+  const [mainData, setMainData] = useState({});
+  const [next, setNext] = useState('https://swapi.co/api/people');
+  const [previous, setPrevious] = useState(null);
 
-  // Fetch data from API
+  function nextPage() {
+    setNext(mainData.next);
+  }
+
+  function previousPage() {
+    setPrevious(mainData.previous);
+  }
+
   useEffect(() => {
-    axios.get(`https://swapi.co/api/people`)
+    axios.get(next)
       .then(response => {
-        // console.log(response.data);
+        
         setPeopleData(response.data.results);
+        setMainData(response.data);
       })
       .catch(error => {
         console.log('Data was not received', error);
       })
-  }, []);
+  }, [next]);
 
   return (
     <div className="App">
       <Container>
           <h1 className="Header">React Wars</h1>
-          <FlexContainer>
+          <div className="flex-container">
             {/* Loop through each data and display component for each one */}
             {peopleData.map((person, index) => (
               <CardComponent
@@ -46,7 +52,8 @@ const App = () => {
                 key={index} 
               />
             ))}
-        </FlexContainer>
+        </div>
+        <ButtonPagination nextPage={nextPage} previousPage={previousPage} />
       </Container>
     </div>
   );
