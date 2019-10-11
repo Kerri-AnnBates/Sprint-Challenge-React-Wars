@@ -5,13 +5,15 @@ function DetailsTable(props) {
     const {birth, gender, hairColor, skinColor, eyeColor } = props;
 
     return (
-        <Detail 
-            birth={birth}
-            gender={gender}
-            hairColor={hairColor}
-            skinColor={skinColor}
-            eyeColor={eyeColor}
-        />
+        <>
+            <Detail 
+                birth={birth}
+                gender={gender}
+                hairColor={hairColor}
+                skinColor={skinColor}
+                eyeColor={eyeColor}
+            />
+        </>
     )
 }
 

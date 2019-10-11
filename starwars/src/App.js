@@ -1,22 +1,23 @@
-import CardList from './components/Card';
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import styled from 'styled-components';
+import { Container } from 'reactstrap';
 import axios from 'axios';
-import Card from './components/Card';
+import CardComponent from './components/CardComponent';
 
-  
+// Component Styles
+const FlexContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
 
+// Component
 const App = () => {
-  // Try to think through what state you'll need for this app before starting. Then build out
-  // the state properties here.
 
-  // Fetch characters from the star wars api in an effect hook. Remember, anytime you have a 
-  // side effect in a component, you want to think about which state and/or props it should
-  // sync up with, if any.
-
-  // const [peopleCount, setPeopleCount] = useState('');
   const [peopleData, setPeopleData] = useState([]);
 
+  // Fetch data from API
   useEffect(() => {
     axios.get(`https://swapi.co/api/people`)
       .then(response => {
@@ -30,18 +31,23 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1 className="Header">React Wars</h1>
-      {peopleData.map((person, index) => (
-        <Card 
-          name={person.name}
-          birth={person.birth_year}
-          gender={person.gender}
-          hairColor={person.hair_color}
-          skinColor={person.skin_color}
-          eyeColor={person.eye_color}
-          key={index} 
-        />
-      ))}
+      <Container>
+          <h1 className="Header">React Wars</h1>
+          <FlexContainer>
+            {/* Loop through each data and display component for each one */}
+            {peopleData.map((person, index) => (
+              <CardComponent
+                name={person.name}
+                birth={person.birth_year}
+                gender={person.gender}
+                hairColor={person.hair_color}
+                skinColor={person.skin_color}
+                eyeColor={person.eye_color}
+                key={index} 
+              />
+            ))}
+        </FlexContainer>
+      </Container>
     </div>
   );
 }
