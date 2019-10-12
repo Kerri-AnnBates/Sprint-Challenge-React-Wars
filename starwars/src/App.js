@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import styled from 'styled-components';
 import { Container } from 'reactstrap';
 import axios from 'axios';
 import CardComponent from './components/CardComponent';
