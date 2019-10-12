@@ -3,12 +3,10 @@ import { Button } from 'reactstrap';
 import styled from 'styled-components';
 
 function ButtonPagination(props) {
-    const { nextPage, previousPage } = props;
+    const { pageChanger, label, color } = props;
+
     return (
-        <>
-        <Button onClick={nextPage} color="warning" size="lg" block>See More</Button>
-        <Button onClick={previousPage} color="secondary" size="lg" block>Go Back</Button>
-        </>
+        <Button onClick={pageChanger} color={color} size="lg" block>{label}</Button>
     )
 }
 

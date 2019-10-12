@@ -12,19 +12,18 @@ const App = () => {
 
   const [peopleData, setPeopleData] = useState([]);
   const [mainData, setMainData] = useState({});
-  const [next, setNext] = useState('https://swapi.co/api/people');
-  const [previous, setPrevious] = useState(null);
+  const [page, setPage] = useState('https://swapi.co/api/people');
 
   function nextPage() {
-    setNext(mainData.next);
+    setPage(mainData.next);
   }
 
   function previousPage() {
-    setPrevious(mainData.previous);
+    setPage(mainData.previous);
   }
 
   useEffect(() => {
-    axios.get(next)
+    axios.get(page)
       .then(response => {
         
         setPeopleData(response.data.results);
@@ -33,7 +32,7 @@ const App = () => {
       .catch(error => {
         console.log('Data was not received', error);
       })
-  }, [next]);
+  }, [page]);
 
   return (
     <div className="App">
@@ -53,7 +52,8 @@ const App = () => {
               />
             ))}
         </div>
-        <ButtonPagination nextPage={nextPage} previousPage={previousPage} />
+        <ButtonPagination pageChanger={nextPage} label='Next Page' color='warning' />
+        <ButtonPagination pageChanger={previousPage} label='Go Back' color='secondary' />
       </Container>
     </div>
   );
