@@ -1,7 +1,7 @@
 import React from 'react';
 import NameTitle from './NameTitle';
 import DetailsTable from './DetailsTable';
-import { Card, CardText, CardBody, CardHeader } from 'reactstrap';
+import { Card, CardBody, CardHeader } from 'reactstrap';
 import styled from 'styled-components';
 
 //Component Styles
